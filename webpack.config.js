@@ -3,6 +3,7 @@ const copyWebpackPlugin = require("copy-webpack-plugin");
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const imageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const { cleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
@@ -33,6 +34,7 @@ module.exports = {
         },
       ],
     }),
+    new cleanWebpackPlugin(),
     new miniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
