@@ -9,17 +9,17 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
-  res.render("index", {
-    meta: {
-      data: {
-        title: "Floema",
-        description:
-          "Floema is a creative agency focused on creating beautiful and functional websites",
-      },
-    },
-  });
+  res.render("pages/home");
 });
-
+app.get("/about", (req, res) => {
+  res.render("pages/about");
+});
+app.get("/details/:id", (req, res) => {
+  res.render("pages/details");
+});
+app.get("/collections", (req, res) => {
+  res.render("pages/collections");
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
