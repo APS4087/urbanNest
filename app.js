@@ -42,39 +42,34 @@ app.get("/", (req, res) => {
   res.render("pages/home");
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", async (req, res) => {
   const api = initPrismicApi(req);
 
-  // Fetch 'about' documents first
-  api
-    .getAllByType("about")
-    .then((aboutResponse) => {
-      console.log("About Response:", aboutResponse); // Log the entire response
+  try {
+    // Fetch 'about' documents
+    const aboutDocuments = await api.getAllByType("about");
+    // Fetch 'meta' documents
+    const metaDocuments = await api.getAllByType("metadata");
 
-      // Check if there are any results for 'about'
-      if (aboutResponse.length > 0) {
-        // Change this line
-        const about = aboutResponse[0]; // Accessing the first item in the 'about' array
+    console.log("about documents", aboutDocuments);
+    console.log("meta documents", metaDocuments);
 
-        if (about.data && about.data.gallery) {
-          about.data.gallery.forEach((media) => {
-            console.log(media);
-          });
-        } else {
-          console.log("No gallery found in the 'about' data.");
-        }
-
-        res.render("pages/about", { about });
-      } else {
-        // Handle case where no 'about' document is returned
-        console.log("No 'about' documents found.");
-        res.render("pages/about", { about: null });
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching 'about' documents:", error);
-      res.status(500).send("Error fetching 'about' documents.");
+    // Log the gallery property of each about document
+    aboutDocuments.forEach((doc) => {
+      console.log(doc.data.gallery);
     });
+
+    // Combine the results if needed
+    const combinedResults = {
+      about: aboutDocuments[0], // get the first element of data sent by Prismic
+      meta: metaDocuments,
+    };
+
+    res.render("pages/about", { combinedResults });
+  } catch (error) {
+    console.error("Error fetching documents:", error);
+    res.status(500).send("Error fetching documents.");
+  }
 });
 
 app.listen(port, () => {

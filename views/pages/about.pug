@@ -4,4 +4,10 @@ block variables
     - var template = 'about'
 
 block content 
-    h1.about_title About
+    .about 
+        .about_wapper 
+            section.about_gallery
+                .about_gallery_wrapper 
+                    each media in combinedResults.about.data.gallery 
+                        figure.about_gallery_media 
+                            img.about_gallery_media_img(alt=media.image.alt src=media.image.url)
