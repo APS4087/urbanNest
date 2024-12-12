@@ -51,13 +51,13 @@ app.get("/about", async (req, res) => {
     // Fetch 'meta' documents
     const metaDocuments = await api.getAllByType("metadata");
 
-    console.log("about documents", aboutDocuments);
-    console.log("meta documents", metaDocuments);
+    // console.log("about documents", aboutDocuments);
+    // console.log("meta documents", metaDocuments);
 
-    // Log the gallery property of each about document
-    aboutDocuments.forEach((doc) => {
-      console.log(doc.data.gallery);
-    });
+    // // Log the gallery property of each about document
+    // aboutDocuments.forEach((doc) => {
+    //   console.log(doc.data.body);
+    // });
 
     // Combine the results if needed
     const combinedResults = {
@@ -69,6 +69,22 @@ app.get("/about", async (req, res) => {
   } catch (error) {
     console.error("Error fetching documents:", error);
     res.status(500).send("Error fetching documents.");
+  }
+});
+
+app.get("/details/:uid", async (req, res) => {
+  const api = initPrismicApi(req);
+  const { uid } = req.params;
+
+  try {
+    const product = await api.getByUID("product", uid, {
+      fetchLinks: "collection.title",
+    });
+    console.log("document", product);
+    res.render("pages/details", { product });
+  } catch (error) {
+    console.error("Error fetching document:", error);
+    res.status(500).send("Error fetching document.");
   }
 });
 
