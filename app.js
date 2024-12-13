@@ -80,7 +80,7 @@ app.get("/details/:uid", async (req, res) => {
     const product = await api.getByUID("product", uid, {
       fetchLinks: "collection.title",
     });
-    console.log("document", product);
+    console.log(product.data);
     res.render("pages/details", { product });
   } catch (error) {
     console.error("Error fetching document:", error);
