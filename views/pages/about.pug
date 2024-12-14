@@ -8,12 +8,12 @@ block content
         .about_wapper 
             section.about_gallery
                 .about_gallery_wrapper 
-                    each media in combinedResults.about.data.gallery 
+                    each media in about.data.gallery 
                         figure.about_gallery_media 
                             img.about_gallery_media_img(alt=media.image.alt src=media.image.url)
                     
             
-            each section in combinedResults.about.data.body 
+            each section in about.data.body 
                 if section.slice_type == 'title'
                     h2.about_title=section.primary.text
                 

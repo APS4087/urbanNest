@@ -13,6 +13,7 @@ import logger from "morgan";
 const app = express();
 const port = 3000;
 
+// Middleware setup
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -47,79 +48,69 @@ app.use((req, res, next) => {
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-// ---------Routes------------
-// landing page
-app.get("/", (req, res) => {
-  res.render("pages/home");
-});
-
-// about page
-app.get("/about", async (req, res) => {
+// Route handlers
+const renderPage = async (req, res, page, fetchData) => {
   const api = initPrismicApi(req);
-
   try {
-    const preloader = await api.getSingle("preloader");
-    // Fetch 'about' documents
-    const aboutDocuments = await api.getAllByType("about");
-    // Fetch 'meta' documents
-    const metaDocuments = await api.getAllByType("metadata");
-    const combinedResults = {
-      about: aboutDocuments[0], // get the first element of data sent by Prismic
-      meta: metaDocuments,
-    };
-
-    res.render("pages/about", { combinedResults, preloader });
+    const data = await fetchData(api);
+    res.render(`pages/${page}`, data);
   } catch (error) {
-    console.error("Error fetching documents:", error);
-    res.status(500).send("Error fetching documents.");
+    console.error(`Error fetching document for ${page}:`, error);
+    res.status(500).send("Error fetching document.");
   }
+};
+
+// Routes
+app.get("/", (req, res) => {
+  renderPage(req, res, "home", async (api) => {
+    const home = await api.getSingle("home");
+    const preloader = await api.getSingle("preloader");
+    const meta = await api.getSingle("metadata");
+    const collections = await api.getAllByType("collection", {
+      fetchLinks: "product.image",
+    });
+    return { meta, collections, home, preloader };
+  });
 });
 
-// collections page
-app.get("/collections", async (req, res) => {
-  const api = initPrismicApi(req);
-  try {
+app.get("/about", (req, res) => {
+  renderPage(req, res, "about", async (api) => {
+    const preloader = await api.getSingle("preloader");
+    const about = await api.getSingle("about");
+    const meta = await api.getSingle("metadata");
+    return { about, meta, preloader };
+  });
+});
+
+app.get("/collections", (req, res) => {
+  renderPage(req, res, "collections", async (api) => {
+    const meta = await api.getSingle("metadata");
     const preloader = await api.getSingle("preloader");
     const home = await api.getSingle("home", {
       fetchLinks: "collection.title",
     });
-    //console.log(home);
     const collections = await api.getAllByType("collection", {
       fetchLinks: "product.image",
     });
-    // Getting the products in each collection and save into product array
-    let products = [];
-    collections.forEach((collection) => {
-      collection.data.products.forEach((product) => {
-        products.push(product);
-      });
-    });
-    //console.log("products array: ", products);
-    res.render("pages/collections", { products, collections, home, preloader });
-  } catch (error) {
-    console.error("Error fetching document:", error);
-    res.status(500).send("Error fetching document.");
-  }
+    const products = collections.flatMap(
+      (collection) => collection.data.products
+    );
+    return { products, collections, home, preloader, meta };
+  });
 });
 
-// details page
-app.get("/details/:uid", async (req, res) => {
-  const api = initPrismicApi(req);
-  const { uid } = req.params;
-
-  try {
+app.get("/details/:uid", (req, res) => {
+  renderPage(req, res, "details", async (api) => {
+    const { uid } = req.params;
     const preloader = await api.getSingle("preloader");
     const product = await api.getByUID("product", uid, {
       fetchLinks: "collection.title",
     });
-    console.log(product.data);
-    res.render("pages/details", { product, preloader });
-  } catch (error) {
-    console.error("Error fetching document:", error);
-    res.status(500).send("Error fetching document.");
-  }
+    return { product, preloader };
+  });
 });
 
+// Start server
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
