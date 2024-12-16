@@ -10,4 +10,4 @@ block content
                 each media in home.data.gallery 
                     figure.home_gallery_media 
                         img.home_gallery_media_img(alt=media.image.alt src=media.image.url)
-            a(href="/collections")=home.data.button
+            a.home_link(href="/collections")=home.data.button

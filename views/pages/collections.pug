@@ -6,18 +6,18 @@ block variables
 block content 
     .collections 
         .collections_wrapper
-            .collection_titles 
+            .collections_titles 
                 each collection, index in collections 
-                    .collection_titles_label=`Collection ${index==0?'One': index==1?'Two': index==2?'Three': index==3?'Four': ''}`
-                    .collection_titles_title=collection.data.title
+                    .collections_titles_label=`Collection ${index==0?'One': index==1?'Two': index==2?'Three': index==3?'Four': ''}`
+                    .collections_titles_title=collection.data.title
             .collections_gallery
                 .collections_gallery_wrapper 
                     each product in products 
-                        a.collection_gallery_link
-                            figure.collection_gallery_media 
-                                img.collection_gallery_media_img(alt=product.products_product.data.image.alt src=product.products_product.data.image.url) 
-            .collection_content 
+                        a.collections_gallery_link
+                            figure.collections_gallery_media 
+                                img.collections_gallery_media_img(alt=product.products_product.data.image.alt src=product.products_product.data.image.url) 
+            .collections_content 
                 each collection in collections 
-                    article.collection_article 
-                        h2.collection_article_title=`${collection.data.title} ${home.data.collection}` 
-                        p.collection_article_description=collection.data.description    
+                    article.collections_article 
+                        h2.collections_article_title=`${collection.data.title} ${home.data.collection}` 
+                        p.collections_article_description=collection.data.description    
