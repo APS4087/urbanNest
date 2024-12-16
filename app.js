@@ -13,6 +13,10 @@ import logger from "morgan";
 const app = express();
 const port = 3000;
 
+// Set up paths and views
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Middleware setup
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -32,10 +36,6 @@ const initPrismicApi = (req) => {
 const handleLinkResolver = (doc) => {
   return "/";
 };
-
-// Set up paths and views
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 app.use((req, res, next) => {
   res.locals.ctx = {
