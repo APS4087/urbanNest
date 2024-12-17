@@ -2,18 +2,22 @@
 @import './utils/mixins';
 @import './utils/functions';
 @import './utils/vendors.scss';
+@import './utils/responsive';
 
+@import './shared/titles';
+@import './shared/descriptions';
 
+@import './base/fonts';
 @import './base/reset';
+@import './base/base';
+
+
 
 @import './pages/collections/collections';
-
 @import './pages/home/home';
-
 @import './pages/details/details';
-
 @import './pages/about/about';
+
 @import './pages/about/gallery';
 @import './pages/about/content';
 @import './pages/about/highlight';
-

@@ -1,57 +1,64 @@
-const webpack = require("webpack");
-const copyWebpackPlugin = require("copy-webpack-plugin");
-const miniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
-const imageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+import path from "path";
+import { fileURLToPath } from "url";
+import webpack from "webpack";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const IS_DEVELOPMENT = process.env.NODE_ENV === "dev";
 
 const dirApp = path.join(__dirname, "app");
-const dirAssets = path.join(__dirname, "assets");
-const dirImages = path.join(__dirname, "images");
-const dirVideos = path.join(__dirname, "videos");
+const dirShared = path.join(__dirname, "shared");
 const dirStyles = path.join(__dirname, "styles");
-const dirNode = path.join(__dirname, "node_modules");
+const dirNode = "node_modules";
 
-module.exports = {
+export default {
   entry: [path.join(dirApp, "index.js"), path.join(dirStyles, "index.scss")],
+
   resolve: {
-    modules: [dirApp, dirAssets, dirStyles, dirNode, dirImages, dirVideos],
+    modules: [dirApp, dirShared, dirStyles, dirNode],
   },
+
   plugins: [
     new webpack.DefinePlugin({
       IS_DEVELOPMENT,
     }),
-    new webpack.ProvidePlugin({
-      $: "jquery",
-    }),
-    new copyWebpackPlugin({
+
+    new CopyWebpackPlugin({
       patterns: [
         {
-          from: "./assets",
+          from: "./shared",
           to: "",
         },
       ],
     }),
-    new CleanWebpackPlugin(),
-    new miniCssExtractPlugin({
+
+    new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
-    new imageMinimizerPlugin({
+
+    new ImageMinimizerPlugin({
       minimizer: {
-        implementation: imageMinimizerPlugin.imageminMinify,
+        implementation: ImageMinimizerPlugin.imageminMinify,
         options: {
           plugins: [
             ["gifsicle", { interlaced: true }],
             ["jpegtran", { progressive: true }],
-            ["optipng", { optimizationLevel: 5 }],
+            ["optipng", { optimizationLevel: 8 }],
           ],
         },
       },
     }),
+
+    new CleanWebpackPlugin(),
   ],
+
   module: {
     rules: [
       {
@@ -60,11 +67,12 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.scss$/,
         use: [
           {
-            loader: miniCssExtractPlugin.loader,
+            loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: "",
             },
@@ -80,8 +88,9 @@ module.exports = {
           },
         ],
       },
+
       {
-        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2|webp)$/i,
+        test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp)$/,
         loader: "file-loader",
         options: {
           name(file) {
@@ -89,13 +98,14 @@ module.exports = {
           },
         },
       },
+
       {
         test: /\.(jpe?g|png|gif|svg|webp)$/i,
         use: [
           {
-            loader: imageMinimizerPlugin.loader,
+            loader: ImageMinimizerPlugin.loader,
             options: {
-              severityError: "warning",
+              severityError: "warning", // Ignore errors on corrupted images
               minimizerOptions: {
                 plugins: ["gifsicle"],
               },
@@ -103,16 +113,23 @@ module.exports = {
           },
         ],
       },
+
       {
         test: /\.(glsl|frag|vert)$/,
         loader: "raw-loader",
         exclude: /node_modules/,
       },
+
       {
         test: /\.(glsl|frag|vert)$/,
         loader: "glslify-loader",
         exclude: /node_modules/,
       },
     ],
+  },
+
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
 };

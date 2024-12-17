@@ -1,4 +1,100 @@
 /*!******************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./styles/index.scss ***!
   \******************************************************************************************************************************************************/
+.dg.ac {
+  z-index: 99999 !important;
+}
 
+body {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "George X";
+  src: url(2f7baf40d2d8a5cc19b7.woff2) format("woff2"), url(ce09147f764accbd7a65.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse BP";
+  src: url(5d2ccc1c3088949259de.woff2) format("woff2"), url(2283fffcc4a820464b57.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse BP";
+  src: url(399f1965a95be52fef0f.woff2) format("woff2"), url(b20fbd8202ad0a49c611.woff) format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse BP";
+  src: url(8f29a10809af495a2edc.woff2) format("woff2"), url(026777345b8f163953dd.woff) format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-family: "Suisse BP";
+}
+@media (max-width: 767px) {
+  body {
+    font-size: 200px;
+  }
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5jc3MiLCJtYXBwaW5ncyI6Ijs7O0FBQUE7RUFDSTtBQ0NKOztBQ01BO0VBQ0k7RUFDQTtBREhKOztBRVBBO0VBQ0ksdUJDRVk7RUREWjtFQUVBO0VBQ0E7RUFDQTtBRlNKO0FFTkU7RUFDRSx3QkNOYTtFRE9iO0VBRUE7RUFDQTtFQUNBO0FGT0o7QUVKRTtFQUNFLHdCQ2ZhO0VEZ0JiO0VBRUE7RUFDQTtFQUNBO0FGS0o7QUVGRTtFQUNFLHdCQ3hCYTtFRHlCYjtFQUVBO0VBQ0E7RUFDQTtBRkdKO0FJcENBOzs7Ozs7Ozs7Ozs7O0VBYUM7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0FKc0NEOztBSXBDQTtBQUNBOztFQUVDO0FKdUNEOztBSXJDQTtFQUNDO0FKd0NEOztBSXRDQTtFQUNDO0FKeUNEOztBSXZDQTtFQUNDO0FKMENEOztBSXhDQTs7RUFFQztFQUNBO0FKMkNEOztBSXpDQTtFQUNDO0VBQ0E7QUo0Q0Q7O0FLckZBO0VBRUksd0JGRWE7QUhxRmpCO0FNOGVJO0VEdmtCSjtJQUtRO0VMd0ZOO0FBQ0YsQyIsInNvdXJjZXMiOlsid2VicGFjazovL3VyYmFubmVzdC8uL3N0eWxlcy91dGlscy92ZW5kb3JzLnNjc3MiLCJ3ZWJwYWNrOi8vdXJiYW5uZXN0Ly4vc3R5bGVzL2luZGV4LnNjc3MiLCJ3ZWJwYWNrOi8vdXJiYW5uZXN0Ly4vc3R5bGVzL3NoYXJlZC9kZXNjcmlwdGlvbnMuc2NzcyIsIndlYnBhY2s6Ly91cmJhbm5lc3QvLi9zdHlsZXMvYmFzZS9mb250cy5zY3NzIiwid2VicGFjazovL3VyYmFubmVzdC8uL3N0eWxlcy91dGlscy92YXJpYWJsZXMuc2NzcyIsIndlYnBhY2s6Ly91cmJhbm5lc3QvLi9zdHlsZXMvYmFzZS9yZXNldC5zY3NzIiwid2VicGFjazovL3VyYmFubmVzdC8uL3N0eWxlcy9iYXNlL2Jhc2Uuc2NzcyIsIndlYnBhY2s6Ly91cmJhbm5lc3QvLi9ub2RlX21vZHVsZXMvaW5jbHVkZS1tZWRpYS9kaXN0L19pbmNsdWRlLW1lZGlhLnNjc3MiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=*/
