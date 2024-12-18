@@ -103,11 +103,12 @@ app.get("/collections", (req, res) => {
 app.get("/details/:uid", (req, res) => {
   renderPage(req, res, "details", async (api) => {
     const { uid } = req.params;
+    const meta = await api.getSingle("metadata");
     const preloader = await api.getSingle("preloader");
     const product = await api.getByUID("product", uid, {
       fetchLinks: "collection.title",
     });
-    return { product, preloader };
+    return { product, preloader, meta };
   });
 });
 

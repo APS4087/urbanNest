@@ -1,9 +1,21 @@
 .preloader {
-
+    @extend %cover;
+    @extend %center;
+    display: none;
+    background: $color-pearl;
+    text-align: center;
 }
 .preloader_text {
+    @extend %title-53;
+    max-width: 66rem;
+    
 
 }
 .preloader_number {
+    @extend %description-14;
+    position: absolute;
+    bottom: 7.3rem;
+    left: 50%;	
+    transform: translate(-50%);
 
 }

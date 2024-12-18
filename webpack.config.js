@@ -24,6 +24,11 @@ export default {
     modules: [dirApp, dirShared, dirStyles, dirNode],
   },
 
+  output: {
+    path: path.resolve(__dirname, "public"),
+    filename: "[name].js",
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       IS_DEVELOPMENT,
@@ -56,7 +61,7 @@ export default {
       },
     }),
 
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(), // Ensure this line is included
   ],
 
   module: {

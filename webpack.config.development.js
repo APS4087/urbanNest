@@ -1,6 +1,7 @@
 import { merge } from "webpack-merge";
 import path from "path";
 import { fileURLToPath } from "url";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import config from "./webpack.config.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,4 +18,5 @@ export default merge(config, {
   output: {
     path: path.resolve(__dirname, "public"),
   },
+  plugins: [new CleanWebpackPlugin()],
 });

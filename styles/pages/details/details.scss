@@ -1,84 +1,113 @@
 .details {
+    @extend %cover;
+    @extend %center;
 
-
+    background: $color-khaki;
+    color: $color-white;
 }
 
 .details_wrapper {
-
+    align-items: center;
+    display: flex;
 
 }
 
 .details_media {
-
+    width: 55.4rem;
+    height: 78.2rem;
+    position: relative;
 
 }
 
 .details_media_img {
-
-
+    @extend %cover;
+    object-fit: cover;
 } 
 
 .details_information {
-
+    padding-left: 8.2rem;
 
 }
 
 .details_information_collection {
-
+    @extend %description-12;
+    
+    margin-bottom: 4rem;
+    text-transform: uppercase;
 
 }
 
 .details_information_title {
+    @extend %title-120;
 
+    max-width: 30rem;
 
 }
 
 .details_information_content {
+    padding-left: 18rem;
 
+}
+    
+.details_information_highlights {
+    margin-top: 5rem;
 
 }
 
-.details_information_highlights {
+.details_information_highlight {
+    align-items: center;
+    display: flex;
 
-
-}
-
-.details_information_highlights {
-
+    &:not(:first-child){
+        margin-top: 4rem;
+    }
 
 }
 
 .details_information_highlights_icon {
-
+    border: 1px solid $color-white;
+    border-radius: 50%;
+    height: 4rem;
+    margin-right: 4rem;
+    width: 4rem;
 
 }
 
 .details_information_highlights_text{
-
+    @extend %description-16;
 
 }
 
 .details_information_list {
-
+    margin-top: 4rem;
 
 }
 
 .details_information_items {
+    display: flex;
 
+    &:not(:first-child){
+        margin-top: 4rem;
+    }
 
 }
 
 .detail_information_items_title {
-
-
+    @extend %description-12;
+    padding-right: 2.5rem;
+    width: 10rem;
 }
 
 .details_information_items_description {
+    @extend %description-16;
 
+    max-width: 44rem;
 
 }
 
 .details_information_link {
+    @extend %title-30;
 
-
+    display: inline-block;
+    margin-top: 3rem;       
 }

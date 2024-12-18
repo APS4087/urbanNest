@@ -10,22 +10,22 @@ block content
                 img.details_media_img(alt=product.data.image.alt src=product.data.image.url)  
         
             .details_information 
-                p.details_information_collection=product.data.collection.data.title
+                p.details_information_collection=`${product.data.collection.data.title} Collection`
                 h1.details_information_title=product.data.text
             
-            .details_information_content 
-                .details_information_highlights
-                    each highlight in product.data.highlights 
-                        p.details_information_highlights 
-                            if highlight.highlights_icon
-                                svg.details_information_highlights_icon 
-                                    use(xlink:href=`sprite-${highlight.highlights_icon.toLowerCase()}`)
-                            span.details_information_highlights_text=highlight.highlights_text
+                .details_information_content 
+                    .details_information_highlights
+                        each highlight in product.data.highlights 
+                            p.details_information_highlight
+                                if highlight.highlights_icon
+                                    svg.details_information_highlights_icon 
+                                        use(xlink:href=`sprite-${highlight.highlights_icon.toLowerCase()}`)
+                                span.details_information_highlights_text!=highlight.highlights_text.replace(/\n/, '<br>')	
 
-                .details_information_list 
-                    each item in product.data.informations
-                        p.details_information_items 
-                            strong.detail_information_items_title=item.informations_label 
-                            span.details_information_items_description=item.informations_description
-                
-                a.details_information_link(href=product.data['link-url'].url target="_blank")=product.data['link-text']
+                    .details_information_list 
+                        each item in product.data.informations
+                            p.details_information_items 
+                                strong.detail_information_items_title=item.informations_label 
+                                span.details_information_items_description=item.informations_description
+                    
+                    a.details_information_link(href=product.data['link-url'].url target="_blank")=product.data['link-text']
