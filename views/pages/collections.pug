@@ -8,7 +8,7 @@ block content
         .collections_wrapper
             .collections_titles 
                 each collection, index in collections 
-                    .collections_titles_label=`Collection ${index==0?'One': index==1?'Two': index==2?'Three': index==3?'Four': ''}`
+                    .collections_titles_label!=`Collection <br> ${index==0?'One': index==1?'Two': index==2?'Three': index==3?'Four': ''}`
                     .collections_titles_title=collection.data.title
             .collections_gallery
                 .collections_gallery_wrapper 
