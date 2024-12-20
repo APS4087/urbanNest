@@ -11,29 +11,15 @@
 }
 
 .collections_titles{
-
-    align-items: center;
-    display: flex;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%) rotate(-90deg);
-    top: 50%;
-    //z-index: 1;
+    @extend %vertical-titles;
 }
 
 .collections_titles_label{
-    @extend %description-12;
-
-    letter-spacing: 0.08rem;
-    padding-left: 1rem;
-    margin: 0 3rem;
-    text-transform: uppercase;
-    transform: rotate(90deg);
-    text-align: center;
+    @extend %vertical-titles_label;
 }
 
 .collections_titles_title{
-    @extend %title-200;
+    @extend %vertical-titles_title;
 
 }
 

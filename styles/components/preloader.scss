@@ -4,11 +4,12 @@
     display: none;
     background: $color-pearl;
     text-align: center;
+    z-index: z('preloader');	
 }
 .preloader_text {
     @extend %title-53;
-    max-width: 66rem;
-    
+    max-width: 80rem;
+    line-height: 8rem;
 
 }
 .preloader_number {

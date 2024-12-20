@@ -1,27 +1,30 @@
 .navigation{
+    @extend %cover;
 
-} 
-.navigation_wrapper {
-    
+    z-index: z('navigation');
+
 } 
 .navigation_link {
+    @extend %title-30;
 
+    //display:flex;
+    height: 2rem;
+    left: 4rem;
+    position: absolute;
+    top: 4rem;
+    width: 14.8rem;
 }
 .navigation_link_icon {
-
+    display: block;
 }
 .navigation_list {
 
 }
 .navigation_list_item {
-
+    position: absolute;
+    right: 4rem;
+    top: 4rem;
 }
 .navigtation_list_link {
-
-}
-.navigation_list_item {
-
-}
-.navigation_list_link {
-
-}
+    @extend %title-30;
+}       

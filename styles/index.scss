@@ -6,7 +6,7 @@
 @import './utils/vendors.scss';
 @import './utils/responsive';
 
-
+@import './shared/verticalTitles';
 @import './shared/titles';
 @import './shared/descriptions';
 
@@ -15,6 +15,7 @@
 
 
 @import './components/preloader';
+@import './layouts/navigation';
 @import './pages/collections/collections';
 @import './pages/home/home';
 @import './pages/details/details';

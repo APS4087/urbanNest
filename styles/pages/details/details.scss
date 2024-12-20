@@ -64,11 +64,10 @@
 
 }
 
-.details_information_highlights_icon {
-    border: 1px solid $color-white;
+.detail_information_highlight_icon {
     border-radius: 50%;
     height: 4rem;
-    margin-right: 4rem;
+    margin-right: 3.75rem;
     width: 4rem;
 
 }
@@ -110,4 +109,21 @@
 
     display: inline-block;
     margin-top: 3rem;       
+}
+
+.detail__button {
+
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 6rem;
+    height: 6rem;
+    width: 12.4rem;
+    position: absolute;
+    z-index: 2;
+}
+
+.detail__button__icon {
+    @extend %cover;
+
+
 }
