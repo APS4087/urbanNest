@@ -20,6 +20,8 @@
         justify-content: flex-end;
     }
 
+
+
 }
 
 .about_content_wrapper{
@@ -28,10 +30,21 @@
     .about_content--right & {
         flex-direction: row-reverse;
     }
+
+    @include media('<phone') {
+        .about_content:nth-child(3) & {
+            flex-direction: column-reverse;
+        }
+    }
 }
 
 .about_content_box{
     display: flex;
+
+    @include media('<phone') {
+        width: 60.9rem;
+        margin-top: 15rem;
+    }
 }
 
 .about_content_label{
@@ -39,6 +52,10 @@
 
     text-transform: uppercase;
     width: 18rem;
+
+    @include media('<phone') {
+        width: 15rem;
+    }
 }
 
 .about_content_description{
@@ -46,6 +63,10 @@
 
     p:not(:first-child){
         margin-top: 4rem; 
+    }
+
+    @include media('<phone') {
+        width: cal(100%-15rem);
     }
 }
 
@@ -71,6 +92,23 @@
         height: 85.6rem;
         width: 60.8rem;
         margin-right: 20rem;	
+    }
+
+    @include media('<phone') {
+        .about_content:nth-child(3) & {
+            height: 91.4rem;
+            width: 100%;
+            margin-left: 0;	
+        }
+        .about_content:nth-child(5) & {
+	
+        }
+        .about_content:nth-child(8) & {
+
+        }
+        .about_content:nth-child(9) & {
+
+        }
     }
 }
 

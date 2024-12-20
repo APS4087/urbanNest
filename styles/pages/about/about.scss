@@ -1,11 +1,11 @@
 .about  {
     background: $color-celtic;
     color: $color-white;
+    
 
 }
 .about_wapper  {
-
-
+    
 }
 .about_title {
     @extend %title-100;
@@ -14,4 +14,7 @@
     max-width: 107.4rem;
     text-align: center;
 
+    @include media('<phone') {
+        max-width: 67.7rem;
+    }
 }

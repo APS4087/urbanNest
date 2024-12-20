@@ -12,6 +12,7 @@
 
 }
 .about_highlight_wrapper  {
+
     margin: auto;
     height: 104rem;
     position: relative;
@@ -36,18 +37,19 @@
 
 }
 .about_highlight_title {
-    @extend %title-200;
+    @extend %title-180;
 
     transform: translate(-50%, -50%) rotate(-90deg);
     padding-bottom: 4rem;
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
 
 }
 .about_highlight_media  {
     width: 54rem;
     height: 76rem;
+    overflow: hidden;
     position: absolute;
 
     .about_highlight:nth-child(4) & {

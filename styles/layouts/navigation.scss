@@ -1,6 +1,8 @@
 .navigation{
     @extend %cover;
 
+    position: fixed;
+    pointer-events: none;
     z-index: z('navigation');
 
 } 
@@ -13,6 +15,14 @@
     position: absolute;
     top: 4rem;
     width: 14.8rem;
+    pointer-events: auto;
+
+    @include media('<phone') {
+        left: 5rem;
+        top: 5rem;
+        width: 27.9rem;
+        height: 4.3rem;
+    }
 }
 .navigation_link_icon {
     display: block;
@@ -23,8 +33,11 @@
 .navigation_list_item {
     position: absolute;
     right: 4rem;
-    top: 4rem;
+    top: 4rem;  
+    pointer-events: auto;
 }
-.navigtation_list_link {
-    @extend %title-30;
+.navigation_list_link {
+    @extend %title-20;
+
+    display: block;
 }       

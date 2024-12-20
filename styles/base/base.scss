@@ -2,19 +2,20 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    // border: 1px solid red !important;  // For Debugging
 }
 
 html {
     font-size: calc(100vw/1920*10);
+    
+    @include media('<phone') {
+        font-size: calc(100vw/750*10);
+    }
 }
 
 body {
     @extend %description-16;
     font-family: $font-suisse-bp;
-
-    @include media('<phone') {
-        font-size: 200px;
-    }
 }
 
 a{
