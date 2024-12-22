@@ -1,4 +1,8 @@
 # ignore node modules
 node_modules
 
+# ignore environment variables file
 .env
+
+# ignore everything inside the public folder
+public/

@@ -2,6 +2,7 @@
     @extend %cover;
 
     position: fixed;
+    color: $color-white;
     pointer-events: none;
     z-index: z('navigation');
 

@@ -21,3 +21,9 @@ block content
                     article.collections_article 
                         h2.collections_article_title=`${collection.data.title} ${home.data.collection}` 
                         p.collections_article_description=collection.data.description    
+            
+            .collections_mobile 
+                each collection, index in collections
+                    .collections_mobile_item 
+                        .collections_mobile_item_label!=`Collection <br> ${index==0?'One': index==1?'Two': index==2?'Three': index==3?'Four': ''}`
+                        .collections_mobile_item_title=collection.data.title

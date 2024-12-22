@@ -12,6 +12,10 @@
 
 .collections_titles{
     @extend %vertical-titles;
+
+    @include media('<phone') {
+        display: none;
+    }
 }
 
 .collections_titles_label{
@@ -58,6 +62,10 @@
 .collections_content{
     @extend %cover;
 
+    @include media('<phone') {
+        display: none;
+    }
+
 } 
 
 .collections_article{
@@ -76,4 +84,26 @@
     @extend %description-16;
     max-width: 44rem;
     
+}
+
+.collections_mobile {   
+    display: flex;
+    position: absolute;
+    bottom: 5rem;
+}
+
+.collections_mobile_item {
+    padding-left: 5rem;
+    width: 100vw;
+}
+
+.collections_mobile_item_label {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
+.collections_mobile_item_title {
+    font-family: $font-george-x;
+    font-size: 12rem;
 }

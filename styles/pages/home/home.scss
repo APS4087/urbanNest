@@ -3,6 +3,7 @@
     @extend %center;
     background: $color-pearl;
     text-align: center;
+    overflow: hidden;
 
     &:before,
     &:after{
@@ -35,7 +36,7 @@
 }
 
 .home_titles_label{
-    @extend %vertical-titles_label;
+    @extend %vertical-titles_label; 
 }
 
 .home_titles_title{
@@ -71,6 +72,12 @@
     width: 28.8rem;
     bottom: 5rem;
     z-index: 2;
+
+    @include media ('<phone') {
+        bottom: 7.5rem;
+        height: 13.7rem;
+        width: 55rem;
+    }
 }
 
 .home_link_icon{
