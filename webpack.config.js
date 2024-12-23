@@ -2,7 +2,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import webpack from "webpack";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
@@ -13,7 +12,6 @@ const __dirname = path.dirname(__filename);
 const IS_DEVELOPMENT = process.env.NODE_ENV === "dev";
 
 const dirApp = path.join(__dirname, "app");
-const dirShared = path.join(__dirname, "shared");
 const dirStyles = path.join(__dirname, "styles");
 const dirNode = "node_modules";
 
@@ -21,7 +19,7 @@ export default {
   entry: [path.join(dirApp, "index.js"), path.join(dirStyles, "index.scss")],
 
   resolve: {
-    modules: [dirApp, dirShared, dirStyles, dirNode],
+    modules: [dirApp, dirStyles, dirNode],
   },
 
   output: {
@@ -32,15 +30,6 @@ export default {
   plugins: [
     new webpack.DefinePlugin({
       IS_DEVELOPMENT,
-    }),
-
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: "./shared",
-          to: "",
-        },
-      ],
     }),
 
     new MiniCssExtractPlugin({
