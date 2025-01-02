@@ -1,7 +1,7 @@
 .preloader {
     @extend %cover;
     @extend %center;
-    display: none;
+    //display: none;
     background: $color-pearl;
     text-align: center;
     z-index: z('preloader');	
@@ -11,6 +11,9 @@
     max-width: 80rem;
     line-height: 8rem;
 
+    span {
+        display: inline-block;
+    }
 }
 .preloader_number {
     @extend %description-14;

@@ -15,7 +15,7 @@ block content
                     each product in products 
                         a.collections_gallery_link
                             figure.collections_gallery_media 
-                                img.collections_gallery_media_img(alt=product.products_product.data.image.alt src=product.products_product.data.image.url) 
+                                img.collections_gallery_media_img(alt=product.products_product.data.image.alt data-src=product.products_product.data.image.url) 
             .collections_content 
                 each collection in collections 
                     article.collections_article 

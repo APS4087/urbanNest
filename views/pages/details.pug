@@ -7,7 +7,7 @@ block content
     .details 
         .details_wrapper 
             figure.details_media 
-                img.details_media_img(alt=product.data.image.alt src=product.data.image.url)  
+                img.details_media_img(alt=product.data.image.alt data-src=product.data.image.url)  
         
             .details_information 
                 p.details_information_collection=`${product.data.collection.data.title} Collection`

@@ -2,12 +2,14 @@ import Home from "./pages/Home/index.js";
 import About from "./pages/About/index.js";
 import Collections from "./pages/Collections/index.js";
 import Details from "./pages/Details/index.js";
+import Preloader from "./components/Preloader.js";
 
 class App {
   constructor() {
     this.createContent();
     this.createPages();
     this.addLinkListeners();
+    this.createPreloader();
   }
 
   createContent() {
@@ -26,6 +28,15 @@ class App {
     this.page = this.pages[this.template];
     this.page.create();
     this.page.show();
+  }
+
+  createPreloader() {
+    this.preloader = new Preloader();
+    this.preloader.once("completed", this.onPreloaded.bind(this));
+  }
+
+  onPreloaded() {
+    this.preloader.destroy();
   }
 
   async onChange(url) {
@@ -47,6 +58,8 @@ class App {
       this.page = this.pages[this.template];
       this.page.create();
       this.page.show();
+
+      this.addLinkListeners();
     } else {
       console.log("Error");
     }
