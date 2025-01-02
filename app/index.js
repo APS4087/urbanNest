@@ -7,6 +7,7 @@ class App {
   constructor() {
     this.createContent();
     this.createPages();
+    this.addLinkListeners();
   }
 
   createContent() {
@@ -25,6 +26,43 @@ class App {
     this.page = this.pages[this.template];
     this.page.create();
     this.page.show();
+  }
+
+  async onChange(url) {
+    await this.page.hide();
+
+    const req = await window.fetch(url);
+
+    if (req.status === 200) {
+      const html = await req.text();
+      const div = document.createElement("div");
+
+      div.innerHTML = html;
+
+      const divContent = div.querySelector(".content");
+      this.content.innerHTML = divContent.innerHTML;
+      this.template = divContent.getAttribute("data-template");
+      this.content.setAttribute("data-template", this.template);
+
+      this.page = this.pages[this.template];
+      this.page.create();
+      this.page.show();
+    } else {
+      console.log("Error");
+    }
+  }
+
+  addLinkListeners() {
+    const links = document.querySelectorAll("a");
+
+    links.forEach((link) => {
+      link.onclick = (event) => {
+        event.preventDefault();
+        const { href } = link;
+
+        this.onChange(href);
+      };
+    });
   }
 }
 
