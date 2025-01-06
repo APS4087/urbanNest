@@ -27,7 +27,6 @@ class App {
 
     this.page = this.pages[this.template];
     this.page.create();
-    this.page.show();
   }
 
   createPreloader() {
@@ -37,6 +36,7 @@ class App {
 
   onPreloaded() {
     this.preloader.destroy();
+    this.page.show();
   }
 
   async onChange(url) {

@@ -2,17 +2,23 @@
     @extend %cover;
     @extend %center;
     //display: none;
-    background: $color-pearl;
+    background: $color-Shark;
     text-align: center;
     z-index: z('preloader');	
 }
 .preloader_text {
-    @extend %title-53;
+    color: $color-pearl;
+    font: 0;
     max-width: 80rem;
-    line-height: 8rem;
+    line-height: 1.2;
 
     span {
         display: inline-block;
+        overflow: hidden;
+    }
+
+    span span{
+        @extend %title-53;
     }
 }
 .preloader_number {
@@ -21,8 +27,14 @@
     bottom: 7.3rem;
     left: 50%;	
     transform: translate(-50%);
+    overflow: hidden;
 
     @include media ('<phone') {
         font-size: 2.5rem;
     }
+}
+
+.preloader_number_text{
+    color: $color-pearl;
+    display: inline-block;
 }

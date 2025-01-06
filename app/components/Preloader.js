@@ -9,14 +9,23 @@ export default class Preloader extends Components {
       elements: {
         title: ".preloader_text",
         number: ".preloader_number",
+        number_text: ".preloader_number_text",
         images: document.querySelectorAll("img"),
       },
     });
 
-    this.element.titleSpans = split({
+    split({
       element: this.elements.title,
       expression: "<br>",
     });
+
+    split({
+      element: this.elements.title,
+      expression: "<br>",
+    });
+
+    this.elements.titleSpans =
+      this.elements.title.querySelectorAll("span span");
 
     this.length = 0;
 
@@ -34,7 +43,7 @@ export default class Preloader extends Components {
   onAssetLoaded(image) {
     this.length += 1;
     const percentage = this.length / this.elements.images.length;
-    this.elements.number.innerHTML = `${Math.round(percentage * 100)}%`;
+    this.elements.number_text.innerHTML = `${Math.round(percentage * 100)}%`;
 
     if (percentage === 1) {
       this.onloaded();
@@ -47,12 +56,33 @@ export default class Preloader extends Components {
         delay: 2,
       });
 
-      //   this.animateOut.to(this.element, {
-      //     autoAlpha: 0,
-      //   });
+      this.animateOut.to(this.elements.titleSpans, {
+        duration: 1.5,
+        ease: "expo.out",
+        stagger: 0.1,
+        x: "-100%",
+      });
+
+      this.animateOut.to(
+        this.elements.number_text,
+        {
+          duration: 1.5,
+          ease: "expo.out",
+          stagger: 0.1,
+          x: "-100%",
+        },
+        "-=1.4"
+      );
+
+      this.animateOut.to(this.element, {
+        duration: 1.5,
+        ease: "expo.out",
+        scaleX: 0,
+        transformOrigin: "0% 0%",
+      });
 
       this.animateOut.call(() => {
-        //this.emit("completed");
+        this.emit("completed");
       });
     });
   }
