@@ -1,6 +1,6 @@
 .details {
-    @extend %cover;
     @extend %center;
+    @extend %page;
 
     background: $color-khaki;
     color: $color-white;

@@ -8,8 +8,10 @@ class App {
   constructor() {
     this.createContent();
     this.createPages();
-    this.addLinkListeners();
     this.createPreloader();
+    this.addLinkListeners();
+    this.update();
+    this.addEventListeners();
   }
 
   createContent() {
@@ -27,6 +29,7 @@ class App {
 
     this.page = this.pages[this.template];
     this.page.create();
+    this.onResize();
   }
 
   createPreloader() {
@@ -37,6 +40,12 @@ class App {
   onPreloaded() {
     this.preloader.destroy();
     this.page.show();
+  }
+
+  onResize() {
+    if (this.page && this.page.onResize) {
+      this.page.onResize();
+    }
   }
 
   async onChange(url) {
@@ -56,6 +65,8 @@ class App {
       this.content.setAttribute("data-template", this.template);
 
       this.page = this.pages[this.template];
+
+      this.onResize();
       this.page.create();
       this.page.show();
 
@@ -76,6 +87,18 @@ class App {
         this.onChange(href);
       };
     });
+  }
+
+  addEventListeners() {
+    window.addEventListener("resize", this.onResize.bind(this));
+  }
+
+  update() {
+    if (this.page && this.page.update) {
+      this.page.update();
+    }
+
+    this.frame = window.requestAnimationFrame(this.update.bind(this));
   }
 }
 

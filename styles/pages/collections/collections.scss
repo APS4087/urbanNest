@@ -1,5 +1,6 @@
 .collections{
-    @extend %cover;
+    @extend %page;
+
     background: $color-khaki;
     color: $color-white;
     overflow: hidden;

@@ -1,6 +1,7 @@
 .home{
-    @extend %cover;
     @extend %center;
+    @extend %page;
+
     background: $color-test;
     text-align: center;
     overflow: hidden;

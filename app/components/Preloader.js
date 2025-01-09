@@ -60,7 +60,7 @@ export default class Preloader extends Components {
         duration: 1.5,
         ease: "expo.out",
         stagger: 0.1,
-        x: "-100%",
+        y: "-100%",
       });
 
       this.animateOut.to(
@@ -69,7 +69,7 @@ export default class Preloader extends Components {
           duration: 1.5,
           ease: "expo.out",
           stagger: 0.1,
-          x: "-100%",
+          y: "-100%",
         },
         "-=1.4"
       );
@@ -77,7 +77,7 @@ export default class Preloader extends Components {
       this.animateOut.to(this.element, {
         duration: 1.5,
         ease: "expo.out",
-        scaleX: 0,
+        scaleY: 0,
         transformOrigin: "0% 0%",
       });
 
